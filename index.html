@@ -24,13 +24,24 @@
 
 <p>How often have you been in a situation where you had to schedule a meeting with a group of colleagues or friends? Wouldn’t it be better to have your smartphone or computer automatically schedule your meetings for you? This is what Smart Scheduler is. It is a collaborative scheduling application that taps into the native calendar of you and your teammates, and schedules your meeting for you based on when everyone is available. Now all you need to do is invite your teammates to your meeting using Smart Scheduler, and let it do the rest. Your meeting scheduling becomes hassle-free, and happens at the tap of a button!</p>
 
-<p>Our Target Audience
-We target busy individuals who collaborate with diverse groups of people. Specifically, we are looking at working professionals, administrative assistants, managers, professors, and even students who tend to work with several other people on collaborative endeavors. We believe that our solution is useful to them because it automates the tedious and time-consuming process of setting up meeting schedules with their peers and groups. The archetype of users we have identified exactly fit the description of someone who can use any additional time they can get. By taking away the constant back-and-forth emails that follow a typical meeting proposal thread, we hope to minimize frustration and maximize productivity. </p>
+<h3>
+<a id="our-target-audience" class="anchor" href="#our-target-audience" aria-hidden="true"><span class="octicon octicon-link"></span></a>Our Target Audience</h3>
+
+<p>We target busy individuals who collaborate with diverse groups of people. Specifically, we are looking at working professionals, administrative assistants, managers, professors, and even students who tend to work with several other people on collaborative endeavors. We believe that our solution is useful to them because it automates the tedious and time-consuming process of setting up meeting schedules with their peers and groups. The archetype of users we have identified exactly fit the description of someone who can use any additional time they can get. By taking away the constant back-and-forth emails that follow a typical meeting proposal thread, we hope to minimize frustration and maximize productivity. </p>
 
 <h3>
-<a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<a id="the-architecture" class="anchor" href="#the-architecture" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Architecture</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>The Smart Scheduler application interacts with a Django backend using a RESTful API. The user's server-side data is stored in a MySQL database, and the local device data is stored in a SQLite database. When a meeting is created, the application retrieves the each participant's availability from their device's native calendar, and sends it back to the server. The server then computes the common availabilities of all participants and notifies each of them on their mobile devices.</p>
+
+<h3>
+<a id="the-team" class="anchor" href="#the-team" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Team</h3>
+
+<p>Song Zheng<br>
+Saajan Shridhar<br>
+Gokul Raghuraman<br>
+Binjie Sun<br>
+Apoorva Verlekar  </p>
 
 <h3>
 <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
