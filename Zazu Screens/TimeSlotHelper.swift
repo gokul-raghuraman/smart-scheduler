@@ -10,7 +10,9 @@ import Foundation
 
 class TimeSlotHelper {
 
-func generateAvalableTimeSlots(timeSlots: Array<NSDate>, events: Array<calendarEvent>, eventDuration: Int) ->Array<NSDate>{
+func generateAvalableTimeSlots(timeSlots: Array<NSDate>, events: Array<calendarEvent>, eventDuration: Int) ->Array<NSDate>
+{
+    
     var result = Array<NSDate>()
     var adjustedCalendarEvents = events
     var i = 0

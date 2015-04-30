@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import AddressBookUI
 import SwiftHTTP
+import JSONJoy
 
 class CreateMeetingViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, ABPeoplePickerNavigationControllerDelegate
 {
@@ -100,7 +101,7 @@ class CreateMeetingViewController: UIViewController, UITextFieldDelegate, UITabl
             return
         }
         
-        var participants:String = ", ".join(dataPassed)
+        var participants:String = ",".join(dataPassed)
         
         var navigationController = self.navigationController! as UINavigationController
         var eventsViewController = navigationController.presentingViewController as ViewController
@@ -122,8 +123,14 @@ class CreateMeetingViewController: UIViewController, UITextFieldDelegate, UITabl
         start = startOnDateTime.dateBySubtractingSeconds(startOnDateTime.seconds())
         end = endOnDateTime.dateBySubtractingSeconds(endOnDateTime.seconds())
         
+        println("start: \(start)")
+        println("end: \(end)")
+        if appDelegate == nil {
+            println("nil")
+        }
         appDelegate!.readEvents(start.toString(format: .ISO8601), endTime: end.toString(format: .ISO8601))
         
+        println("can I pass here")
         start = start.dateBySubtractingHours(timeDifference)
         end = end.dateBySubtractingHours(timeDifference)
 
@@ -141,13 +148,13 @@ class CreateMeetingViewController: UIViewController, UITextFieldDelegate, UITabl
             temp.append(slot.dateByAddingHours(timeDifference).toString(format: .ISO8601))
         }
 
-        time_slots = ", ".join(temp)
+        time_slots = ",".join(temp)
         let params:Dictionary<String, AnyObject> = [
             "name": "\(meetingName!)",
             "description": "\(meetingDescription!)",
             "duration": "\(duration!)",
-            "creator_email": "\(userEmail)",
-            "creator_name": "\(userName)",
+            "creator_email": "\(user.currentUser!.email!)",
+            "creator_name": "\(user.currentUser!.firstName!) \(user.currentUser!.lastName!)",
             "decide_by_date": "\(dd.toString(format: .ISO8601))",
             "start_date": "\(fd.toString(format: .ISO8601))",
             "end_date": "\(ed.toString(format: .ISO8601))",
@@ -158,24 +165,25 @@ class CreateMeetingViewController: UIViewController, UITextFieldDelegate, UITabl
         //println(params)
 
         request.POST("\(apiURL)/events/", parameters: params, success: {(response: HTTPResponse) in
-            /*let alertController = UIAlertController(title: "Smart Scheduler", message:
-                "Event Created", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
-            self.presentViewController(alertController, animated: false, completion: nil)*/
             eventsViewController.newEvent = Event(
                 eID: 0,
                 name: self.meetingName!,
                 description: self.meetingDescription!,
                 duration: self.duration!,
-                email: "\(userEmail)",
-                creator_name: "\(userName)",
-                attendees: participants,
+                email: "\(user.currentUser!.email!)",
+                creator_name: "\(user.currentUser!.firstName!) \(user.currentUser!.lastName!)",
+                attendees: self.dataPassed,
                 sd: fd.toString(format: .ISO8601),//.fromDate!,
                 ed: ed.toString(format: .ISO8601),//self.toDate!,
                 dd: dd.toString(format: .ISO8601),//self.decideByDate!,
                 status: "\(status)",
                 timeSlots: [time_slots]
             )
+
+            if response.responseObject != nil {
+                let temp = Event(JSONDecoder(response.responseObject!))
+                eventsViewController.newEvent!.eventID = temp.eventID!
+            }
             self.dismissViewControllerAnimated(true, completion: nil)
             }, failure: {(error: NSError, response: HTTPResponse? ) in
                 let alertController = UIAlertController(title: "Smart Scheduler", message:

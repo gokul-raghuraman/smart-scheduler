@@ -15,6 +15,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 
     var newEvent: Event?
+    var refreshControl = UIRefreshControl()
+    var tableViewController = UITableViewController(style: .Plain)
 
     @IBOutlet weak var eventsTableView: UITableView!
     
@@ -22,13 +24,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if newEvent != nil {
             events.append(newEvent!)
             newEvent = nil
-            self.eventsTableView.reloadData()
         }
+        self.eventsTableView.reloadData()
+        //self.refreshControl = rc
     }
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        var tableView = tableViewController.tableView
+        tableView.dataSource = self
+        request.requestSerializer = HTTPRequestSerializer()
+        request.requestSerializer.headers["JWT"] = "\(user.token!)"
         getAPIEvents()
+        //self.refreshControl = UIRefreshControl()
+
+        tableViewController.refreshControl = self.refreshControl
+        self.refreshControl.addTarget(self, action: Selector("updateSlotView"), forControlEvents: UIControlEvents.ValueChanged)
     }
 
     override func didReceiveMemoryWarning()
@@ -44,12 +55,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 let decoder = JSONDecoder(response.responseObject!)
                 if let decoders = decoder.array {
                     for subDecoder in decoders {
-                        events.append(Event(subDecoder))
+                        let temp = Event(subDecoder)
+                        if user.currentUser!.email! == temp.creator_email! {
+                            events.append(temp)
+                        } else if let invitees = temp.attendees {
+                            for invitee in invitees {
+                                if user.currentUser!.email! == invitee {
+                                    events.append(temp)
+                                }
+                            }
+                        }
                     }
-                }
-                for e in events {
-                    println(e.eventID)
-                    println(e.name)
                 }
                 self.eventsTableView.reloadData()
             }
@@ -58,20 +74,39 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
 
     }
-    func updateEventTimeSlots()
-    {
-        
-        
-        
-        /*
-        //update
-        let params:Dictionary<String, AnyObject> = ["user_email": "\(signIn!.userEmail)", "device_id": "\(signIn!.userID)", "token": "\(auth.accessToken)"]
-        request.PUT("\(apiURL)/participants/", parameters: params, success: {(response: HTTPResponse) in
-            println("token updated")
-            }, failure: {(error: NSError, response: HTTPResponse? ) in
+    
+    func updateSlotView() {
+        var tempEvents = Array<Event>()
+        request.GET("\(apiURL)/events/", parameters: nil, success: {(response: HTTPResponse) in
+            if response.responseObject != nil {
+                let decoder = JSONDecoder(response.responseObject!)
+                if let decoders = decoder.array {
+                    for subDecoder in decoders {
+                        let temp = Event(subDecoder)
+                        if user.currentUser!.email! == temp.creator_email! {
+                            tempEvents.append(temp)
+                        } else if let invitees = temp.attendees {
+                            for invitee in invitees {
+                                if user.currentUser!.email! == invitee {
+                                    tempEvents.append(temp)
+                                }
+                            }
+                        }
+                    }
+                }
+                for e in tempEvents {
+                    for ee in events {
+                        if e.eventID != ee.eventID {
+                            events.append(e)
+                        }
+                    }
+                }
+                self.eventsTableView.reloadData()
+                self.refreshControl.endRefreshing()
+            }
+            }, failure: {(error: NSError, response: HTTPResponse?) in
                 println("got an error: \(error)")
         })
-*/
     }
     
     
@@ -83,7 +118,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: EventTableViewCell = eventsTableView.dequeueReusableCellWithIdentifier("EventCell") as EventTableViewCell
         let event = events[indexPath.row]
-        cell.setCell(event.name!, status: event.status!, eventTimeText: event.start_date!, eventAttendeesText: event.attendees!, eventCreatorName: event.creator_name!)//, eventCreatorImage: "nul")
+        var attendee = ",".join(event.attendees!)
+        
+        let name = event.creator_name!.componentsSeparatedByString(" ")
+        let pic = name[0].lowercaseString
+
+        cell.setCell(event.name!, status: event.status!, eventTimeText: event.start_date!, eventAttendeesText: attendee, eventCreatorName: event.creator_name!, eventCreatorImage: "\(pic)")
+
         return cell
     }
     

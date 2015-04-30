@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Zazu Screens/AppDelegate.swift"
-            timestampString = "449862655.448362"
+            timestampString = "449974100.804407"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "insertEventIntoStore(_:)"
             landmarkType = "5">
          </BreakpointContent>

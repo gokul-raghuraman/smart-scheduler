@@ -9,6 +9,35 @@
 import Foundation
 import JSONJoy
 
+
+struct CurrentUser: JSONJoy {
+    var firstName: String?
+    var lastName: String?
+    var email: String?
+    init() {
+        
+    }
+    init(_ decoder: JSONDecoder) {
+        firstName = decoder["first_name"].string
+        lastName = decoder["last_name"].string
+        email = decoder["email"].string
+    }
+
+}
+
+struct User: JSONJoy {
+    var token : String?
+    var currentUser: CurrentUser?
+    init() {
+        
+    }
+    init(_ decoder: JSONDecoder) {
+        token = decoder["token"].string
+        currentUser = CurrentUser(decoder["user"])
+    }
+}
+
+
 struct Event: JSONJoy {
     var eventID: Int?
     var name: String?
@@ -16,7 +45,7 @@ struct Event: JSONJoy {
     var duration: String?
     var creator_email: String?
     var creator_name: String?
-    var attendees: String?
+    var attendees: Array<String>?
     var start_date: String?
     var end_date: String?
     var decide_by_date: String?
@@ -24,7 +53,7 @@ struct Event: JSONJoy {
     var timeSlots: Array<String>?
     //var image: String?
     
-    init(eID: Int, name: String, description: String, duration: String, email: String, creator_name: String, attendees: String, sd: String, ed: String, dd: String, status: String, timeSlots: Array<String>)//, image: String)
+    init(eID: Int, name: String, description: String, duration: String, email: String, creator_name: String, attendees: Array<String>, sd: String, ed: String, dd: String, status: String, timeSlots: Array<String>)//, image: String)
     {
         self.eventID = eID
         self.name = name
@@ -54,7 +83,9 @@ struct Event: JSONJoy {
             let s = decoder["timeSlots"].string
             let ss = s?.componentsSeparatedByString(",")
             timeSlots = ss
-            attendees = decoder["invitee"].string
+            let a = decoder["invitee"].string
+            let aa = a?.componentsSeparatedByString(",")
+            attendees = aa
         }
 
 }

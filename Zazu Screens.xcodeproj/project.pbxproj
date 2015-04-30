@@ -12,7 +12,9 @@
 		5511AC4B1AC4518A000C0A44 /* binjie.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5511AC4A1AC4518A000C0A44 /* binjie.jpg */; };
 		5511AC4D1AC4518E000C0A44 /* song.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5511AC4C1AC4518E000C0A44 /* song.jpg */; };
 		5511AC5A1AC49FCA000C0A44 /* gokul.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5511AC591AC49FCA000C0A44 /* gokul.jpg */; };
+		552585111AE6EE0C00A44F8B /* TimeSlotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552585101AE6EE0C00A44F8B /* TimeSlotsViewController.swift */; };
 		557C19111AD1AB3300DFEF3A /* JSONJoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CFD5C51AD1AA51002E2E92 /* JSONJoy.framework */; };
+		55C4A5FF1AE8900D00B241C4 /* defaultAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 55C4A5FE1AE8900D00B241C4 /* defaultAvatar.png */; };
 		55CFD5AD1AD1AA22002E2E92 /* SwiftHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CFD5A61AD1A9FD002E2E92 /* SwiftHTTP.framework */; };
 		55D3E2051AC4ADF500B8B762 /* CreateMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D3E2041AC4ADF500B8B762 /* CreateMeetingViewController.swift */; };
 		55D3E2091AC4B67900B8B762 /* PopDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D3E2081AC4B67900B8B762 /* PopDatePicker.swift */; };
@@ -30,7 +32,12 @@
 		E43EC6CA1AC7780400ED2022 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E43EC6C81AC7780400ED2022 /* Main.storyboard */; };
 		E47AEEC41ACDD89F001FE8AD /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47AEEC31ACDD89F001FE8AD /* Event.swift */; };
 		E47AEEC61ACDD8B9001FE8AD /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47AEEC51ACDD8B9001FE8AD /* SwiftyJSON.swift */; };
+		E4CF418B1AD20D500040D4C3 /* JSONJoy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 55CFD5C51AD1AA51002E2E92 /* JSONJoy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E4CF418D1AD20D570040D4C3 /* SwiftHTTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 55CFD5A61AD1A9FD002E2E92 /* SwiftHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E4CF418F1AD20D660040D4C3 /* SwiftHTTP.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55CFD5A61AD1A9FD002E2E92 /* SwiftHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E4CF41921AD20D950040D4C3 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CF41911AD20D950040D4C3 /* LogInViewController.swift */; };
 		E4E9104D1ACF4F380068F180 /* CalendarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9104C1ACF4F380068F180 /* CalendarUtils.swift */; };
+		E4EE1F3E1AE37EFD00AB9F67 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EE1F3D1AE37EFD00AB9F67 /* RegistrationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +104,20 @@
 			remoteGlobalIDString = 55DF2E791AC42FB400496B13;
 			remoteInfo = "Zazu Screens";
 		};
+		E4CF417F1AD20D470040D4C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55CFD5BD1AD1AA51002E2E92 /* JSONJoy.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B3E79B619D355CF006071F7;
+			remoteInfo = JSONJoy;
+		};
+		E4CF41891AD20D4B0040D4C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55CFD59E1AD1A9FD002E2E92 /* SwiftHTTP.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6BFD901519C8D8B500DD99B6;
+			remoteInfo = SwiftHTTP;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -106,6 +127,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				E4CF418F1AD20D660040D4C3 /* SwiftHTTP.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +146,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E4CF418D1AD20D570040D4C3 /* SwiftHTTP.framework in Embed Frameworks */,
+				E4CF418B1AD20D500040D4C3 /* JSONJoy.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +160,8 @@
 		5511AC4A1AC4518A000C0A44 /* binjie.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = binjie.jpg; sourceTree = SOURCE_ROOT; };
 		5511AC4C1AC4518E000C0A44 /* song.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = song.jpg; sourceTree = SOURCE_ROOT; };
 		5511AC591AC49FCA000C0A44 /* gokul.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gokul.jpg; sourceTree = SOURCE_ROOT; };
+		552585101AE6EE0C00A44F8B /* TimeSlotsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSlotsViewController.swift; sourceTree = "<group>"; };
+		55C4A5FE1AE8900D00B241C4 /* defaultAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultAvatar.png; sourceTree = "<group>"; };
 		55CFD59E1AD1A9FD002E2E92 /* SwiftHTTP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftHTTP.xcodeproj; path = "SwiftHTTP-master/SwiftHTTP.xcodeproj"; sourceTree = "<group>"; };
 		55CFD5BD1AD1AA51002E2E92 /* JSONJoy.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JSONJoy.xcodeproj; path = "JSONJoy-Swift-master/JSONJoy.xcodeproj"; sourceTree = "<group>"; };
 		55D3E2041AC4ADF500B8B762 /* CreateMeetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMeetingViewController.swift; sourceTree = "<group>"; };
@@ -158,7 +184,9 @@
 		E43EC6C91AC7780400ED2022 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E47AEEC31ACDD89F001FE8AD /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		E47AEEC51ACDD8B9001FE8AD /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		E4CF41911AD20D950040D4C3 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		E4E9104C1ACF4F380068F180 /* CalendarUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarUtils.swift; sourceTree = "<group>"; };
+		E4EE1F3D1AE37EFD00AB9F67 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +212,7 @@
 		5511AC4E1AC45F1A000C0A44 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				55C4A5FE1AE8900D00B241C4 /* defaultAvatar.png */,
 				5511AC591AC49FCA000C0A44 /* gokul.jpg */,
 				5511AC4A1AC4518A000C0A44 /* binjie.jpg */,
 				5511AC4C1AC4518E000C0A44 /* song.jpg */,
@@ -239,6 +268,7 @@
 			children = (
 				5511AC4E1AC45F1A000C0A44 /* Images */,
 				55D3E2101AC4E39900B8B762 /* DetailEventViewController.swift */,
+				552585101AE6EE0C00A44F8B /* TimeSlotsViewController.swift */,
 				55D3E20E1AC4C85400B8B762 /* AddInviteesViewController.swift */,
 				55DF2E7F1AC42FB400496B13 /* AppDelegate.swift */,
 				55DF2E811AC42FB400496B13 /* ViewController.swift */,
@@ -249,6 +279,8 @@
 				E4E9104C1ACF4F380068F180 /* CalendarUtils.swift */,
 				E43C584C1ACF9C3D00CDC8A5 /* DateHelper.swift */,
 				E4160F751AD0BDCE00E03426 /* TimeSlotHelper.swift */,
+				E4CF41911AD20D950040D4C3 /* LogInViewController.swift */,
+				E4EE1F3D1AE37EFD00AB9F67 /* RegistrationViewController.swift */,
 				55DF2E861AC42FB400496B13 /* Images.xcassets */,
 				E43EC6C81AC7780400ED2022 /* Main.storyboard */,
 				55DF2E881AC42FB400496B13 /* LaunchScreen.xib */,
@@ -301,6 +333,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				E4CF418A1AD20D4B0040D4C3 /* PBXTargetDependency */,
+				E4CF41801AD20D470040D4C3 /* PBXTargetDependency */,
 			);
 			name = "Zazu Screens";
 			productName = "Zazu Screens";
@@ -440,6 +474,7 @@
 			files = (
 				5511AC4D1AC4518E000C0A44 /* song.jpg in Resources */,
 				5511AC491AC4514F000C0A44 /* saajan.jpg in Resources */,
+				55C4A5FF1AE8900D00B241C4 /* defaultAvatar.png in Resources */,
 				5511AC5A1AC49FCA000C0A44 /* gokul.jpg in Resources */,
 				E43EC6CA1AC7780400ED2022 /* Main.storyboard in Resources */,
 				5511AC4B1AC4518A000C0A44 /* binjie.jpg in Resources */,
@@ -472,7 +507,10 @@
 				5511AC431AC4450D000C0A44 /* EventTableViewCell.swift in Sources */,
 				55D3E2091AC4B67900B8B762 /* PopDatePicker.swift in Sources */,
 				E43C584D1ACF9C3D00CDC8A5 /* DateHelper.swift in Sources */,
+				E4EE1F3E1AE37EFD00AB9F67 /* RegistrationViewController.swift in Sources */,
 				55DF2E821AC42FB400496B13 /* ViewController.swift in Sources */,
+				552585111AE6EE0C00A44F8B /* TimeSlotsViewController.swift in Sources */,
+				E4CF41921AD20D950040D4C3 /* LogInViewController.swift in Sources */,
 				E4E9104D1ACF4F380068F180 /* CalendarUtils.swift in Sources */,
 				55DF2E801AC42FB400496B13 /* AppDelegate.swift in Sources */,
 				55D3E20B1AC4B68500B8B762 /* PopDateViewController.swift in Sources */,
@@ -494,6 +532,16 @@
 			isa = PBXTargetDependency;
 			target = 55DF2E791AC42FB400496B13 /* Zazu Screens */;
 			targetProxy = 55DF2E901AC42FB400496B13 /* PBXContainerItemProxy */;
+		};
+		E4CF41801AD20D470040D4C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JSONJoy;
+			targetProxy = E4CF417F1AD20D470040D4C3 /* PBXContainerItemProxy */;
+		};
+		E4CF418A1AD20D4B0040D4C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftHTTP;
+			targetProxy = E4CF41891AD20D4B0040D4C3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -38,8 +38,8 @@ class EventTableViewCell: UITableViewCell
     {
         super.setSelected(selected, animated: animated)
     }
-    
-    func setCell(eventNameText: String, status: String, eventTimeText: String, eventAttendeesText: String, eventCreatorName: String)//, eventCreatorImage: String)
+
+    func setCell(eventNameText: String, status: String, eventTimeText: String, eventAttendeesText: String, eventCreatorName: String, eventCreatorImage: String)
     {
         self.titleLabel.text = eventNameText
         self.timeLabel.text = eventTimeText
@@ -53,7 +53,8 @@ class EventTableViewCell: UITableViewCell
         {
             self.statusImageView.image = UIImage(named: "\(status)")
         }
-        //self.creatorImageView.image = UIImage(named: "\(eventCreatorImage)")
-        //self.creatorImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        var profilePic = "\(eventCreatorName).jpg"
+        self.creatorImageView.image = UIImage(named: "\(profilePic)")
+        self.creatorImageView.contentMode = UIViewContentMode.ScaleAspectFit
     }
 }

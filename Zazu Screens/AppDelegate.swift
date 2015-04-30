@@ -13,13 +13,14 @@ import EventKit
 import SwiftHTTP
 
 var events = Array<Event>()
+var user = User()
 var request = HTTPTask()
 var eventStore = EKEventStore()
-//var apiURL = "http://szheng60.pythonanywhere.com/api"
+var apiURL = "http://szheng60.pythonanywhere.com/api"
 //var apiURL = "http://192.168.136.1:8000/api"
-var apiURL = "http://143.215.62.237:8000/api"
-var userEmail = "xinyuchen919@gmail.com"
-var userName = "song"
+//var apiURL = "http://143.215.59.236:8000/api"
+//var userEmail = "xinyuchen919@gmail.com"
+//var userName = "song"
 var calendarTitle = String()
 var calendarEventTimeSlot = Array<calendarEvent>()
 var timeDifference = 4 //adjustment for time
@@ -174,6 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func readEvents(startTime:String, endTime:String)
     {
+        println("to read events")
         let eventStore = EKEventStore()
         let source = sourceInEventStore(eventStore, type: EKSourceTypeLocal, title: "\(calendarTitle)")
         
@@ -189,18 +191,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let startDate = NSDate(fromString: startTime, format: .ISO8601)
         let endDate = NSDate(fromString: endTime, format: .ISO8601)
         
+        println(startDate)
+        println(endDate)
         /*create fetch*/
         let searchPredicate = eventStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: [calendar!])
+        println("create fetch")
         /*fetch events b/t starting and ending dates*/
-        let events = eventStore.eventsMatchingPredicate(searchPredicate) as [EKEvent]
-
-        if events.count == 0 {
+        let e = eventStore.eventsMatchingPredicate(searchPredicate) as? [EKEvent]
+        println("fetch events")
+        
+        if e == nil {
             println("No events could be found")
         } else {
-            for event in events {
+            println("parse event")
+            for event in e! {
                 let ce = calendarEvent(title: event.title, start_date: event.startDate.dateBySubtractingHours(timeDifference), end_date: event.endDate.dateBySubtractingHours(timeDifference))
                 calendarEventTimeSlot.append(ce)
             }
+            println("got events")
         }
     }
 
